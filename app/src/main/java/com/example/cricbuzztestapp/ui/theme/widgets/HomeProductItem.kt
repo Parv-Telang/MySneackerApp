@@ -18,13 +18,12 @@ import androidx.compose.ui.geometry.Size
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
-import com.example.cricbuzztestapp.R
 import com.example.cricbuzztestapp.sneakerscreen.viewmodel.HomeViewmodel
 import com.example.cricbuzztestapp.ui.theme.DarkBlue
 import com.example.cricbuzztestapp.util.getDp
 
 @Composable
-fun ProductItemLayout(
+fun HomeProductItemLayout(
     modifier: Modifier = Modifier,
     image: Int,
     price: String,
@@ -54,7 +53,17 @@ fun ProductItemLayout(
                  * If the verticalOffset is > 0 => product at bottom so stage width should larger.
                  * If the verticalOffset is < 0 => product at top so stage width should be smaller
                  */
+                /**
+                 * Check what is the current offset, to see whether the product is at bottom or top?
+                 * The stage width basically can have 2 widths depending on the offset of the product.
+                 * If the verticalOffset is > 0 => product at bottom so stage width should larger.
+                 * If the verticalOffset is < 0 => product at top so stage width should be smaller
+                 */
                 if (verticalOffset < 0) {
+                    /**
+                     * Currently product is at bottom, which is below 0,
+                     * We should set the offset to default - which is zero - and stage size to it's maximum value
+                     */
                     /**
                      * Currently product is at bottom, which is below 0,
                      * We should set the offset to default - which is zero - and stage size to it's maximum value
@@ -62,6 +71,10 @@ fun ProductItemLayout(
                     verticalOffset = 0
                     productStageSize = defaultStageSize
                 } else {
+                    /**
+                     * Currently product is at top, which is above 0,
+                     * We should increase the offset and stage size to it's minimum value - which is half of the original size.
+                     */
                     /**
                      * Currently product is at top, which is above 0,
                      * We should increase the offset and stage size to it's minimum value - which is half of the original size.
@@ -125,12 +138,20 @@ fun ProductItemLayout(
                 .clip(MaterialTheme.shapes.large)
         ) {
             /** This is the most important step amigos, initiating the sizes */
+            /** This is the most important step amigos, initiating the sizes */
+            /** This is the most important step amigos, initiating the sizes */
+
+            /** This is the most important step amigos, initiating the sizes */
             val fullBoxWidthAsFloat = this.constraints.maxWidth.toFloat()
             val fullBoxHeightAsFloat = this.constraints.maxHeight.toFloat()
             internalBoxSize = Size(
                 width = fullBoxWidthAsFloat,
                 height = fullBoxHeightAsFloat.div(2),
             )
+            /** The default stage width ~ 4/5 of full grid item's width and height ~ 1/3 of that width to get an oval shape */
+            /** The default stage width ~ 4/5 of full grid item's width and height ~ 1/3 of that width to get an oval shape */
+            /** The default stage width ~ 4/5 of full grid item's width and height ~ 1/3 of that width to get an oval shape */
+
             /** The default stage width ~ 4/5 of full grid item's width and height ~ 1/3 of that width to get an oval shape */
             val stageWidthAsFloat = fullBoxWidthAsFloat.times(0.8f)
             val stageHeightASFloat = stageWidthAsFloat.times(0.3f)
@@ -191,13 +212,7 @@ fun ProductItemLayout(
                     text = "$$price",
                     style = MaterialTheme.typography.body1,
                 )
-                ReactiveCartIcon(
-                    isOnCart = onCart,
-                    onCartChange = onChangeCartState,
-                    viewModel = viewmodel
-                )
             }
-            /** Product's name */
             Text(
                 modifier = Modifier,
                 text = title,
